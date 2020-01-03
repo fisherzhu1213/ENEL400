@@ -34,9 +34,6 @@ uint8_t command_rev(void){
 	return code;
 }
 
-uint8_t checkCmmand(uint8_t command, int size){
-	
-}
 Command checkOperation(void){
 	
 }
