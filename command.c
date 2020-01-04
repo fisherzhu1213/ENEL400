@@ -164,13 +164,13 @@ void process(void){
 }
 
 void operation_armFwd(void){
-	RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
+	TIM3->CR1 |= TIM_CR1_CEN;
 	TIM3->CCR1		= 10;//2ms duty cycle to make servo turn right
 	TIM3->EGR		 |=	TIM_EGR_UG;				//set TO UG
 }
 
 void operation_armBwd(void){
-	RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
+	TIM3->CR1 |= TIM_CR1_CEN;
 	TIM3->CCR1		= 5;//1ms duty cycle to make servo turn left
 	TIM3->EGR		 |=	TIM_EGR_UG;				//set TO UG
 }
