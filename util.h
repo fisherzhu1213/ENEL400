@@ -10,5 +10,6 @@ typedef unsigned short     int uint16_t;
 typedef unsigned           int uint32_t;
 typedef unsigned       __int64 uint64_t;
 
+#define BUFFER_SIZE 30
 
 void delay_ms(float num );

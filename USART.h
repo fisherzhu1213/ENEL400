@@ -1,6 +1,11 @@
 #include "clock.h"
 #include "util.h"
-
+/*
+uint8_t inBuffer[BUFFER_SIZE];
+uint8_t outBuffer[BUFFER_SIZE];
+int inBufferCounter;
+int outBufferCounter;
+*/
 
 void USART2_ini(void);
 void USART3_ini(void);
