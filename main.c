@@ -1,18 +1,21 @@
-#include "clock.h"
 #include "GPIOs.h"
 #include "timer.h"
-#include "USART.h"
 #include "adc.h"
 #include "util.h"
+#include "USART.h"
+#include "command.h"
 
 int main(){
 
 	setupClock();
 	GPIOs_ini();
-	setupTIM2();
+	setTim2();
+	setTim3();
+	setTim4();
+
 //	TIM2->CR1 |= 0x0001;				//Enable the timer	
-//	USART2_ini();
-//	USART3_ini();
+	USART2_ini();
+	USART3_ini();
 //	ADC_1_ini();
 	while(1){
 //		uint16_t data,data_U3;
@@ -35,4 +38,24 @@ int main(){
 	return 0;
 }
 
+void USART3_IRQHandler(void){
+	uint8_t receiver;
+	receiver = getByte_U3();
+	process(receiver);
+	delay_ms(500);
+	closeAllTimer();
+}
 
+
+//void USART2_IRQHandler(void){
+//	uint8_t receiver;
+//	receiver = getByte();
+//	if(receiver == 0x76){
+//		indicator_on();
+//	}
+//	else{
+//		greenLed_on();
+//	}
+//		
+//	process();
+//}

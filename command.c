@@ -93,67 +93,72 @@ Command checkOperation(void){
 
 uint8_t command_rev(void){
 	uint8_t code;
-	code = getByte();//read data from USART2
+	code = getByte_U3();//read data from USART2
 	return code;
 }
 
-void process(void){
-	Command command=command_rev();
-	switch(command){
-		case A:
+void process(uint8_t receiver){
+	//Command command = receiver;
+	uint8_t ch;
+	ch=receiver;
+	switch(ch){
+		case 'A':
 			//operation_fwd();
 		break;
 	
-		case B:
+		case 'B':
 			//operation_bwd();
 		break;
 	
-		case C:
+		case 'C':
 			//operation_turnLeft();
 		break;
 	
-		case D:
+		case 'D':
 			//operation_turnRight();
 		break;
 	
-		case E:
+		case 'E':
 			//operation_parallelRight();
 		break;
 	
-		case F:
+		case 'F':
 			//operation_parallelLeft();
 		break;
 	
-		case G:
+		case 'G':
+			operation_armFwd();
 			//operation_armFwd();
 		break;
 	
-		case H:
+		case 'H':
+			operation_armBwd();
 			//operation_armBwd();
 		break;
 	
-		case I:
+		case 'I':
+			operation_armStop();
 			//operation_armTurnRight();
 		break;
 	
-		case J:
+		case 'J':
 			//operation_armTurnLeft();
 		break;
 	
-		case K:
+		case 'K':
 			//operation_cameraUp();
 		break;
 	
-		case L:
+		case 'L':
 			//operation_cameraDown();
 		break;
 	
-		case M:
+		case 'M':
 			//opreation_armStop();
 		break;
 		
-		case N:
-			//operation_camerastoP();
+		case 'N':
+			//operation_camerastop();
 		break;
 		
 		default:
@@ -164,17 +169,24 @@ void process(void){
 }
 
 void operation_armFwd(void){
-	TIM3->CR1 |= TIM_CR1_CEN;
-	TIM3->CCR1		= 10;//2ms duty cycle to make servo turn right
-	TIM3->EGR		 |=	TIM_EGR_UG;				//set TO UG
+
+	TIM2->CR1 |= TIM_CR1_CEN;
+	TIM2->CCR1		= 10;//2ms duty cycle to make servo turn right
+	TIM2->EGR		 |=	TIM_EGR_UG;				//set TO UG
 }
 
 void operation_armBwd(void){
 	TIM3->CR1 |= TIM_CR1_CEN;
-	TIM3->CCR1		= 5;//1ms duty cycle to make servo turn left
+	TIM3->CCR1		= 30;//1ms duty cycle to make servo turn left
 	TIM3->EGR		 |=	TIM_EGR_UG;				//set TO UG
 }
 
 void operation_armStop(void){
-	RCC->APB1ENR &= ~RCC_APB1ENR_TIM3EN;	//stop the timer for stopping pwm signal
+	TIM4->CR1 |= TIM_CR1_CEN;
+	TIM4->CCR1		= 10;//2ms duty cycle to make servo turn right
+	TIM4->EGR		 |=	TIM_EGR_UG;				//set TO UG
+//	TIM3->CCR1		= 7;
+//	TIM3->EGR		 |=	TIM_EGR_UG;
+//	delay_ms(100);
+//	TIM3->CR1 &= ~TIM_CR1_CEN;	//stop the timer for stopping pwm signal
 }

@@ -38,7 +38,7 @@ uint8_t command_rev(void);
 //Command getFirstArgu(void);
 //Command getSecondArgu(void);
 //Command checkOperation(void);
-void process(void);
+void process(uint8_t);
 void operation_armFwd(void);
 void operation_armBwd(void);
 void operation_armStop(void);
