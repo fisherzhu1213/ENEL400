@@ -183,7 +183,7 @@ void operation_armBwd(void){
 
 void operation_armStop(void){
 	TIM4->CR1 |= TIM_CR1_CEN;
-	TIM4->CCR1		= 10;//2ms duty cycle to make servo turn right
+	TIM4->CCR1		= 50;//2ms duty cycle to make servo turn right
 	TIM4->EGR		 |=	TIM_EGR_UG;				//set TO UG
 //	TIM3->CCR1		= 7;
 //	TIM3->EGR		 |=	TIM_EGR_UG;

@@ -16,8 +16,10 @@ int main(){
 //	TIM2->CR1 |= 0x0001;				//Enable the timer	
 	USART2_ini();
 	USART3_ini();
-//	ADC_1_ini();
+	ADC_1_ini();
 	while(1){
+//		uint8_t irdata;
+//		irdata	=	(GPIOC->IDR|GPIO_IDR_IDR5);
 //		uint16_t data,data_U3;
 //		sendByte_U3(0x76);
 //		sendByte(0x84);
@@ -36,6 +38,16 @@ int main(){
 //		delay(12000000);
 	}
 	return 0;
+}
+
+void ADC1_IRQHandler(void)
+{
+	uint16_t adc_val;
+	uint16_t recorder = ADC1->SR;
+	if(recorder & 0x2){
+		adc_val = ADC1->DR;
+		
+	}
 }
 
 void USART3_IRQHandler(void){

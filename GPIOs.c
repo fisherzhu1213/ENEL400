@@ -11,6 +11,13 @@ void GPIOs_ini(void){
 
 }
 
+void ir_sensor(void)
+{
+	GPIOC->CRL &=~GPIO_CRL_CNF5;
+	GPIOC->CRL |= GPIO_CRL_CNF5_0;
+	GPIOC->CRL &= ~GPIO_CRL_MODE5;
+}
+
 void indicator_on(void){
 	GPIOC->BSRR |= GPIO_BSRR_BS8;
 }
