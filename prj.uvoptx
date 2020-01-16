@@ -156,12 +156,12 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>receiver</ItemText>
+          <ItemText>GPIO_BRR_BR8</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>command</ItemText>
+          <ItemText>c</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
@@ -171,17 +171,17 @@
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>irdata</ItemText>
+          <ItemText>adcval</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>adcval</ItemText>
+          <ItemText>data</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>adcval</ItemText>
+          <ItemText>data_U3</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>
@@ -241,10 +241,6 @@
         <Entry>
           <Name>System Viewer\GPIOA</Name>
           <WinId>35903</WinId>
-        </Entry>
-        <Entry>
-          <Name>System Viewer\GPIOC</Name>
-          <WinId>35900</WinId>
         </Entry>
         <Entry>
           <Name>System Viewer\RCC</Name>

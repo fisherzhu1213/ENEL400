@@ -14,7 +14,7 @@ int main(){
 	setTim4();
 
 //	TIM2->CR1 |= 0x0001;				//Enable the timer	
-	USART2_ini();
+//	USART2_ini();
 	USART3_ini();
 	ADC_1_ini();
 	while(1){

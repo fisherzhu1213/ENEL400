@@ -161,6 +161,18 @@ void process(uint8_t receiver){
 			//operation_camerastop();
 		break;
 		
+		case 'O':
+			//opreation_second_acceleration();
+		break;
+		
+		case 'P':
+			//operation_third_acceleration();
+		break;
+		
+		case 'Q':
+			//opreation_wheel_stop();
+		break;
+		
 		default:
 			//operation_ready();
 		break;
@@ -168,25 +180,52 @@ void process(uint8_t receiver){
 
 }
 
-void operation_armFwd(void){
 
+void servo_1_fwd(void){
 	TIM2->CR1 |= TIM_CR1_CEN;
-	TIM2->CCR1		= 10;//2ms duty cycle to make servo turn right
-	TIM2->EGR		 |=	TIM_EGR_UG;				//set TO UG
+	TIM2->CCR2 = 10;
+	TIM2->EGR |= TIM_EGR_UG;
+}
+void servo_1_bwd(void){
+	TIM2->CR1 |= TIM_CR1_CEN;
+	TIM2->CCR2 = 5;
+	TIM2->EGR |= TIM_EGR_UG;
+}
+void servo_2_fwd(void){
+	TIM3->CR1 |= TIM_CR1_CEN;
+	TIM3->CCR1 = 10;
+	TIM3->EGR |= TIM_EGR_UG;
+}
+void servo_2_bwd(void){
+	TIM3->CR1 |= TIM_CR1_CEN;
+	TIM3->CCR1 = 5;
+	TIM3->EGR |= TIM_EGR_UG;
+}
+void servo_3_fwd(void){
+	TIM4->CR1 |= TIM_CR1_CEN;
+	TIM4->CCR1 = 10;
+	TIM4->EGR |= TIM_EGR_UG;
+}
+void servo_3_bwd(void){
+	TIM4->CR1 |= TIM_CR1_CEN;
+	TIM4->CCR1 = 5;
+	TIM4->EGR |= TIM_EGR_UG;
+}
+
+void operation_armFwd(void){
+	servo_1_fwd();
+	servo_2_bwd();
+	servo_3_fwd();
 }
 
 void operation_armBwd(void){
-	TIM3->CR1 |= TIM_CR1_CEN;
-	TIM3->CCR1		= 30;//1ms duty cycle to make servo turn left
-	TIM3->EGR		 |=	TIM_EGR_UG;				//set TO UG
+	servo_1_bwd();
+	servo_2_fwd();
+	servo_3_bwd();
 }
 
 void operation_armStop(void){
-	TIM4->CR1 |= TIM_CR1_CEN;
-	TIM4->CCR1		= 50;//2ms duty cycle to make servo turn right
-	TIM4->EGR		 |=	TIM_EGR_UG;				//set TO UG
-//	TIM3->CCR1		= 7;
-//	TIM3->EGR		 |=	TIM_EGR_UG;
-//	delay_ms(100);
-//	TIM3->CR1 &= ~TIM_CR1_CEN;	//stop the timer for stopping pwm signal
+	TIM2->CR1 &= ~TIM_CR1_CEN;
+	TIM3->CR1 &= ~TIM_CR1_CEN;	//stop the timer for stopping pwm signal
+	TIM4->CR1 &= ~TIM_CR1_CEN;
 }

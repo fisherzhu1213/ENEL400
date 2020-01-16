@@ -30,7 +30,19 @@ typedef enum{
 	K,//CAMERA UP
 	L,//CAMERA DOWN
 	M,//ARM STOP
-	N//CAMERA STOP
+	N,//CAMERA STOP
+	O,//SECOND ACCELERATION
+	P,//THIRD ACCELERATION
+	Q,//WHEEL STOP
+	R,//FINGER_1_INWARD
+	S,//FINGER_1_OUTWARD
+	T,//FINGER_2_INWARD
+	U,//FINGER_2_OUTWARD
+	V,//FINGER_3_INWARD
+	W,//FINGER_3_OUTWARD
+	X,
+	Y,
+	Z
 }Command;
 
 uint8_t command_rev(void);
@@ -38,6 +50,13 @@ uint8_t command_rev(void);
 //Command getFirstArgu(void);
 //Command getSecondArgu(void);
 //Command checkOperation(void);
+
+void servo_1_fwd(void);
+void servo_1_bwd(void);
+void servo_2_fwd(void);
+void servo_2_bwd(void);
+void servo_3_fwd(void);
+void servo_3_bwd(void);
 void process(uint8_t);
 void operation_armFwd(void);
 void operation_armBwd(void);
