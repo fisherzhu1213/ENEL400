@@ -42,23 +42,18 @@ typedef enum{
 	W,//FINGER_3_OUTWARD
 	X,
 	Y,
-	Z
+	Z,
+	a,
+	b,
+	c,
+	d
 }Command;
 
 uint8_t command_rev(void);
+void process(uint8_t );
 //uint8_t checkCommand(uint8_t [], int size);
 //Command getFirstArgu(void);
 //Command getSecondArgu(void);
 //Command checkOperation(void);
 
-void servo_1_fwd(void);
-void servo_1_bwd(void);
-void servo_2_fwd(void);
-void servo_2_bwd(void);
-void servo_3_fwd(void);
-void servo_3_bwd(void);
-void process(uint8_t);
-void operation_armFwd(void);
-void operation_armBwd(void);
-void operation_armStop(void);
-void movement_ctrl(void);
+

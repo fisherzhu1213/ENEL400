@@ -450,6 +450,16 @@
               <FileType>1</FileType>
               <FilePath>.\command.c</FilePath>
             </File>
+            <File>
+              <FileName>operation_index.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\operation_index.h</FilePath>
+            </File>
+            <File>
+              <FileName>operation_index.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\operation_index.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
