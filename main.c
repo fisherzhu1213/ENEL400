@@ -4,22 +4,23 @@
 #include "util.h"
 #include "USART.h"
 #include "command.h"
-//#include "operation_index.h"
+#include "operation_index.h"
 uint16_t data,data_U3;
 int main(){
 
 	setupClock();
 	GPIOs_ini();
-//	setTim2();
-//	setTim3();
-//	setTim4();
+	setTim2();
+	setTim3();
+	setTim4();
 
 //	TIM2->CR1 |= 0x0001;				//Enable the timer	
 //	USART2_ini();
 	USART3_ini();
 //	ADC_1_ini();
 	while(1){
-//			timer2_1_tester();
+//		tim2_tester();
+			timer2_1_tester();
 //			timer2_4_tester();
 //			timer4_1_tester();
 //			timer4_2_tester();
@@ -33,12 +34,12 @@ int main(){
 
 //		uint8_t irdata;
 //		irdata	=	(GPIOC->IDR|GPIO_IDR_IDR5);
-		data = getByte_U3();
-		if(data == 0x84){indicator_on();}
-		if(data == 0x76) {greenLed_on();}
-		delay_ms(500);
-		greenLed_off();
-		indicator_off();
+//		data = getByte_U3();
+//		if(data == 0x84){indicator_on();}
+//		if(data == 0x76) {greenLed_on();}
+//		delay_ms(500);
+//		greenLed_off();
+//		indicator_off();
 //		delay_ms(500);
 //		indicator_on();
 //		delay(12000000);
