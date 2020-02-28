@@ -10,7 +10,7 @@ int main(){
 
 	setupClock();
 	GPIOs_ini();
-	setTim2();
+//	setTim2();
 	setTim3();
 	setTim4();
 
@@ -19,11 +19,14 @@ int main(){
 	USART3_ini();
 //	ADC_1_ini();
 	while(1){
+//		operation_armFwd();
+//		operation_armBwd();
+//		operation_arm_mvfwd_5_deg();
 //		tim2_tester();
-			timer2_1_tester();
-//			timer2_4_tester();
-//			timer4_1_tester();
-//			timer4_2_tester();
+//			timer3_1_tester();
+//			timer3_2_tester();
+//			timer4_1_tester();//sub arm teset
+			timer4_2_tester();//main arm tester
 //		delay_ms(1000);
 //		TIM2->CCR2 = 15;
 //		delay_ms(1000);
@@ -58,14 +61,12 @@ int main(){
 //		
 //	}
 //}
-
-//void USART3_IRQHandler(void){
-//	uint8_t receiver;
-//	receiver = getByte_U3();
-//	process(receiver);
-//}
-
-
+void USART3_IRQHandler(void){
+	uint8_t receiver;
+	receiver = getByte_U3();
+	indicator_on();
+	process(receiver);
+}
 //void USART2_IRQHandler(void){
 //	uint8_t receiver;
 //	receiver = getByte();

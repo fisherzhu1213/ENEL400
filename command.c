@@ -188,7 +188,23 @@ void process(uint8_t receiver){
 		break;
 		
 		case'h':
-			timer2_4_tester();
+			tim2_tester();
+		break;
+		
+		case 'i':
+			operation_arm_mvfwd_5_deg();
+		break;
+		
+		case 'j':
+			operation_arm_mvbwd_5_deg();
+		break;
+		
+		case 'k':
+			operation_clamp_get_5_deg();
+		break;
+		
+		case'l':
+			operation_clamp_lease_5_deg();
 		break;
 		
 		

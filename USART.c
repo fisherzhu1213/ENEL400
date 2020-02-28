@@ -1,4 +1,6 @@
 #include "USART.h"
+#include "GPIOs.h"
+#include "command.h"
 
 
 
@@ -15,7 +17,8 @@ void USART3_ini(void){
 	
 	USART3->CR1 |= USART_CR1_RXNEIE | USART_CR1_UE | USART_CR1_RE | USART_CR1_TE;
 	USART3->BRR = 0x9c5;
-	NVIC->ISER[1]= NVIC_ISER_SETENA_8;
+	NVIC->ISER[1]= NVIC_ISER_SETENA_7;
+	NVIC->IP[0];
 	
 }
 
@@ -32,6 +35,7 @@ uint8_t getByte_U3(void){
 		receiver = USART3->DR;
 		return receiver;
 }
+
 
 
 //void USART2_ini(void){
