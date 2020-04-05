@@ -1,15 +1,17 @@
 #include "adc.h"
-/*
+
+
+/********************************
 Equipment: Sharp GP2Y0D805Z0F
 Output : digital
 Range	 : minimum range : 50mm
 Consumption : 5mA
 Supply volt : 2.7 ~ 6.2V
 *Sunlight tolerance
-*/
+*************************************/
 
 //gpioa has enabled
-//PA1 AS ADC1 Channel 1
+//PA2 AS ADC1 Channel 2
 void ADC_1_ini(void)
 {	
 	RCC->APB2ENR |= RCC_APB2ENR_ADC1EN;

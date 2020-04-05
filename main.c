@@ -10,7 +10,8 @@ int main(){
 
 	setupClock();
 	GPIOs_ini();
-//	setTim2();
+	setTim1();
+////	setTim2();
 	setTim3();
 	setTim4();
 
@@ -18,15 +19,24 @@ int main(){
 //	USART2_ini();
 	USART3_ini();
 //	ADC_1_ini();
+
 	while(1){
+
+//		timer3_2_tester();
+//		timer3_1_tester();
+//		operation_rotate_clamp_right();
+//	operation_rotate_clamp_left();
 //		operation_armFwd();
 //		operation_armBwd();
+//		operation_subarm_mvfwd_5_deg();
+//		operation_subarm_mvbwd_5_deg();
 //		operation_arm_mvfwd_5_deg();
+//		timer4_4_tester();
 //		tim2_tester();
 //			timer3_1_tester();
 //			timer3_2_tester();
 //			timer4_1_tester();//sub arm teset
-			timer4_2_tester();//main arm tester
+//			timer4_2_tester();//main arm tester
 //		delay_ms(1000);
 //		TIM2->CCR2 = 15;
 //		delay_ms(1000);
@@ -49,7 +59,7 @@ int main(){
 //		indicator_off();
 //		delay(12000000);
 	}
-	return 0;
+//	return 0;
 }
 
 //void ADC1_IRQHandler(void)

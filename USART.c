@@ -3,7 +3,12 @@
 #include "command.h"
 
 
-
+/**************************************************************
+USART 3 enabler
+Author: Yuming Zhu
+Enable USART3 timer and interrupt, set the parity, stop bit
+baud rate to let it communicate with ESP8266
+***************************************************************/
 void USART3_ini(void){
 //PB10->TX, PB 11->RX
 	RCC->APB1ENR |= RCC_APB1ENR_USART3EN;
@@ -22,6 +27,13 @@ void USART3_ini(void){
 	
 }
 
+/**************************************************************
+USART 3 SENDBYTE function
+Author: Yuming Zhu
+Read TXE and TC register to tell the system whether byte is sent 
+of not.
+Only use for testing, not applied in this project
+***************************************************************/
 void sendByte_U3(uint8_t data){
 
 	while((USART3->SR & USART_SR_TXE) == 0);
@@ -29,6 +41,12 @@ void sendByte_U3(uint8_t data){
 	while((USART3->SR & USART_SR_TC) == 0);
 }
 
+/**************************************************************
+USART 3 GETBYTE function
+Author: Yuming Zhu
+Read RXNE register, and store DR register value into a template
+variable. 
+***************************************************************/
 uint8_t getByte_U3(void){
 		uint8_t receiver;
 		while((USART3->SR & USART_SR_RXNE) == 0);

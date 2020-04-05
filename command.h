@@ -3,8 +3,9 @@
 #include "adc.h"
 #include "util.h"
 #include "USART.h"
+
 /*
-for farther extension
+for farther extension if necessary
 extern uint8_t inBuffer[BUFFER_SIZE];
 extern uint8_t outBuffer[BUFFER_SIZE];
 

@@ -1,25 +1,30 @@
 #include "command.h"
 #include "operation_index.h"
+//uint8_t command_fwd[]="A";//fwd
+//uint8_t command_bwd[]="B";//bwd
+//uint8_t command_turnLeft[]="C";//turn left
+//uint8_t command_turnRight[]="D";//turn right
+//uint8_t command_parallelRight[]="E";//parallel right
+//uint8_t command_parallelLeft[]="F";//parallel left
+//uint8_t command_armFwd[]="G";//arm fwd
+//uint8_t command_armBwd[]="H";//arm bwd
+//uint8_t command_armTurnRight[]="I";//arm right
+//uint8_t command_armTurnLeft[]="J";//arm left
+//uint8_t command_cameraDown[]="K";//camera down
+//uint8_t command_cameraUp[]="L";//camera up
 
-uint8_t command_fwd[]="A";//fwd
-uint8_t command_bwd[]="B";//bwd
-uint8_t command_turnLeft[]="C";//turn left
-uint8_t command_turnRight[]="D";//turn right
-uint8_t command_parallelRight[]="E";//parallel right
-uint8_t command_parallelLeft[]="F";//parallel left
-uint8_t command_armFwd[]="G";//arm fwd
-uint8_t command_armBwd[]="H";//arm bwd
-uint8_t command_armTurnRight[]="I";//arm right
-uint8_t command_armTurnLeft[]="J";//arm left
-uint8_t command_cameraDown[]="K";//camera down
-uint8_t command_cameraUp[]="L";//camera up
-
-/*
-For farther extension for the system
+/**********************************************************
+Complex command reader
+Author: Yuming Zhu
+Usage: For farther extension for the system
+			 When there are too many functions need to be called
+			 The following code will help to read command in string
+			 
+			 Note: Not applied in the project
+************************************************************
 uint8_t tempBuffer[BUFFER_SIZE];
 int tempBufferCounter;
 int arguCounter;
-
 Command getFirstArgu(void){
 	for(tempBufferCounter =0;tempBufferCounter<inBufferCounter;tempBufferCounter++){
 		if(inBuffer[tempBufferCounter] != ' ' && inBuffer[tempBufferCounter] != 0x00){
@@ -83,33 +88,42 @@ uint8_t command_rev(void){
 	return code;
 }
 
+/**********************************************************
+Single Character comand Reader
+Author: Yuming Zhu
+Usage: For a single character command, this function will be better
+				to reduce memory usage. 
+Read the command that receives from USART3, and goes to specific 
+functions. 
+Empty case can be used by further system extension
+************************************************************/
 void process(uint8_t receiver){
 	//Command command = receiver;
 	uint8_t ch;
 	ch=receiver;
 	switch(ch){
 		case 'A':
-			//operation_fwd();
+			operation_fwd();
 		break;
 	
 		case 'B':
-			//operation_bwd();
+			operation_bwd();
 		break;
 	
 		case 'C':
-			//operation_turnLeft();
+			operation_turnLeft();
 		break;
 	
 		case 'D':
-			//operation_turnRight();
+			operation_turnRight();
 		break;
 	
 		case 'E':
-			//operation_parallelRight();
+			opreation_second_acceleration();
 		break;
 	
 		case 'F':
-			//operation_parallelLeft();
+			operation_third_acceleration();
 		break;
 	
 		case 'G':
@@ -128,19 +142,19 @@ void process(uint8_t receiver){
 		break;
 	
 		case 'J':
-			//operation_armTurnLeft();
+			operation_subarmFwd();
 		break;
 	
 		case 'K':
-			//operation_cameraUp();
+			operation_subarmBwd();
 		break;
 	
 		case 'L':
-			//operation_cameraDown();
+			operation_rotate_arm_right_10deg();
 		break;
 	
 		case 'M':
-			//opreation_armStop();
+			operation_rotate_arm_left_10deg();
 		break;
 		
 		case 'N':
@@ -148,15 +162,15 @@ void process(uint8_t receiver){
 		break;
 		
 		case 'O':
-			//opreation_second_acceleration();
+			opreation_wheel_stop();
 		break;
 		
 		case 'P':
-			//operation_third_acceleration();
+
 		break;
 		
 		case 'Q':
-			//opreation_wheel_stop();
+
 		break;
 		
 		case 'a':
@@ -188,7 +202,7 @@ void process(uint8_t receiver){
 		break;
 		
 		case'h':
-			tim2_tester();
+
 		break;
 		
 		case 'i':
@@ -200,11 +214,31 @@ void process(uint8_t receiver){
 		break;
 		
 		case 'k':
-			operation_clamp_get_5_deg();
+
 		break;
 		
 		case'l':
-			operation_clamp_lease_5_deg();
+
+		break;
+		
+		case'm':
+			operation_rotate_clamp_right();
+		break;
+		
+		case'n':
+			operation_rotate_clamp_left();
+		break;
+		
+		case'o':
+			operation_subarm_mvfwd_5_deg();
+		break;
+		
+		case'p':
+			operation_subarm_mvbwd_5_deg();
+		break;
+		
+		case'q':
+			initialization();
 		break;
 		
 		

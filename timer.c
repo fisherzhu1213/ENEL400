@@ -1,7 +1,34 @@
 #include "timer.h"
 //a.k.a servo controller
 
+/****************************************************************
+fucntion setTim1 
+author: Zongyao Liu 
+Enable timer 1 to control signal that will transfer to stepper driver
+****************************************************************/
+void setTim1 (void)
+{		
+		RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
+		GPIOA->CRH &= ~GPIO_CRH_CNF10;
+		GPIOA->CRH |= GPIO_CRH_CNF10_1;
+		GPIOA->CRH |= GPIO_CRH_MODE10;
+		GPIOA->CRH &= ~GPIO_CRH_CNF11;
+		GPIOA->CRH |= GPIO_CRH_CNF11_1;
+		GPIOA->CRH |= GPIO_CRH_MODE11;
 
+		TIM1->CR1 |= TIM_CR1_ARPE | TIM_CR1_DIR;
+		TIM1->CR2 |= TIM_CR2_OIS1;
+		TIM1->EGR |= TIM_EGR_UG;
+		TIM1->CCMR2 |= TIM_CCMR2_OC3M_2 | TIM_CCMR2_OC3M_1 | TIM_CCMR2_OC3PE | TIM_CCMR2_OC3FE;
+		TIM1->CCER |= TIM_CCER_CC3E;
+		TIM1->CCMR2 |= TIM_CCMR2_OC4M_2 | TIM_CCMR2_OC4M_1 | TIM_CCMR2_OC4PE | TIM_CCMR2_OC4FE;
+		TIM1->CCER |= TIM_CCER_CC4E;
+
+		TIM1->ARR = 900;
+		TIM1->CCR3 = 800;
+		TIM1->CCR4 = 800;
+		TIM1->BDTR |= TIM_BDTR_MOE | TIM_BDTR_OSSI;
+}
 
 //SET PA0,3 AS TIM2 CH1, 4
 //SINCE ADC_1 IS IN PA2, WE DONT USE PA1 AND PA2
@@ -56,6 +83,12 @@
 //}
 
 //SET PA6,7 PB 0,1 AS TIM3 CH 1,2,3,4
+/**************************************************************
+Timer 3 enabler
+Author: Yuming Zhu
+Enable timer 3 to enable arm rotation, all other availiable channel
+can be used in extension
+***************************************************************/
 void setTim3(void){
 	RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
 	GPIOA->CRL &= ~GPIO_CRL_CNF6;
@@ -90,12 +123,17 @@ void setTim3(void){
 	
 
 	TIM3->PSC     = 240;				//set PSC to 1000Hz
-	TIM3->ARR     = 2000;			 //set ARR TO 100Hz
+	TIM3->ARR     = 300;			 //set ARR TO 333Hz
 
 	TIM3->SR = 0x00000000;			//Clear Flag
 }
 
-//SET PB6,7,8,9 AS TIM4 CH1,2,3,4
+/**************************************************************
+Timer 4 enabler
+Author: Yuming Zhu
+Enable timer 4 to enable mechanical arm actions
+set period to 50Hz
+***************************************************************/
 void setTim4(void){
 	RCC->APB1ENR |= RCC_APB1ENR_TIM4EN;
 	GPIOB->CRL &= ~GPIO_CRL_CNF6;
@@ -131,7 +169,10 @@ void setTim4(void){
 
 	TIM4->PSC     = 240;				
 	TIM4->ARR     = 2000;	
-
+//	TIM4->CCR1 = 70;
+//	TIM4->CCR2 = 40;
+//	TIM4->CCR3 = 40;
+//	TIM4->CCR4 = 160;
 
 
 	TIM4->SR = 0x00000000;			
